@@ -40,7 +40,7 @@ namespace FileBackup
         {
             if ((destination != null && fileToSave != null))
             {
-                StreamWriter sw = File.CreateText(@"\data.txt");
+                StreamWriter sw = File.CreateText(@".\data.txt");
 
                 canSave = true;
                 sw.WriteLine(fileToSave);
@@ -64,7 +64,7 @@ namespace FileBackup
         {
             if (!File.Exists(@".\data.txt"))
             {
-                using (StreamWriter sw = File.AppendText(@"\data.txt")) 
+                using (StreamWriter sw = File.AppendText(@".\data.txt")) 
                 {
                     canSave = false;
                     sw.Close();
@@ -72,7 +72,7 @@ namespace FileBackup
             }
             try
             {
-                using (StreamReader sr = new StreamReader(@"\data.txt"))
+                using (StreamReader sr = new StreamReader(@".\data.txt"))
                 {
                     fileToSave = sr.ReadLine();
                     if (fileToSave == null)
