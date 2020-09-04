@@ -37,6 +37,7 @@ namespace FileBackupByGigginoCorp
             this.DestinationStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.ApplyStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.Menu = new System.Windows.Forms.NotifyIcon(this.components);
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -45,28 +46,29 @@ namespace FileBackupByGigginoCorp
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.TargetStrip,
             this.DestinationStrip,
-            this.ApplyStrip});
+            this.ApplyStrip,
+            this.exitToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(172, 70);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 114);
             // 
             // TargetStrip
             // 
             this.TargetStrip.Name = "TargetStrip";
-            this.TargetStrip.Size = new System.Drawing.Size(171, 22);
+            this.TargetStrip.Size = new System.Drawing.Size(180, 22);
             this.TargetStrip.Text = "Directory to save";
             this.TargetStrip.Click += new System.EventHandler(this.DirToSave);
             // 
             // DestinationStrip
             // 
             this.DestinationStrip.Name = "DestinationStrip";
-            this.DestinationStrip.Size = new System.Drawing.Size(171, 22);
+            this.DestinationStrip.Size = new System.Drawing.Size(180, 22);
             this.DestinationStrip.Text = "Destination folder ";
             this.DestinationStrip.Click += new System.EventHandler(this.TargetDir);
             // 
             // ApplyStrip
             // 
             this.ApplyStrip.Name = "ApplyStrip";
-            this.ApplyStrip.Size = new System.Drawing.Size(171, 22);
+            this.ApplyStrip.Size = new System.Drawing.Size(180, 22);
             this.ApplyStrip.Text = "Apply ";
             this.ApplyStrip.Click += new System.EventHandler(this.applicamodificheToolStripMenuItem_Click);
             // 
@@ -79,6 +81,13 @@ namespace FileBackupByGigginoCorp
             this.Menu.Icon = ((System.Drawing.Icon)(resources.GetObject("Menu.Icon")));
             this.Menu.Text = "FileBackupper";
             this.Menu.Visible = true;
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -106,6 +115,7 @@ namespace FileBackupByGigginoCorp
         private System.Windows.Forms.ToolStripMenuItem DestinationStrip;
         private System.Windows.Forms.ToolStripMenuItem ApplyStrip;
         private System.Windows.Forms.NotifyIcon Menu;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
     }
 }
 
