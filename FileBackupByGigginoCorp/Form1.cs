@@ -21,6 +21,9 @@ namespace FileBackup
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            string path = Application.ExecutablePath;
+            string lastFolderName = Path.GetFileName(Path.GetDirectoryName(path));
+
             Initialize();
             RunThread();
         }
@@ -171,7 +174,16 @@ namespace FileBackup
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            thread1.Abort();
+            try
+            {
+
+
+                thread1.Abort();
+            }
+            catch
+            {
+
+            }
             Application.Exit();
         }
 
