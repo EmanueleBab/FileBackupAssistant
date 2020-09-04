@@ -4,13 +4,14 @@ using System.Security.Permissions;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace FileBackupByGigginoCorp
+namespace FileBackup
 {
     public partial class Form1 : Form
     {
         public static string fileToSave;
         public static string destination;
         public static bool canSave, running = false;
+        Thread thread1;
         public Form1()
         {
             InitializeComponent();
@@ -26,7 +27,7 @@ namespace FileBackupByGigginoCorp
         {
             if(canSave && !running)
             {
-                Thread thread1 = new Thread(Run);
+                 thread1 = new Thread(Run);
                 thread1.Start();
             }
         }
@@ -86,7 +87,6 @@ namespace FileBackupByGigginoCorp
 
         }
 
-        [PermissionSet(SecurityAction.Demand, Name = "FullTrust")]
         private static void Run()
         {
             if (!running)
@@ -146,7 +146,7 @@ namespace FileBackupByGigginoCorp
         private void DirToSave(object sender, EventArgs e)
         {
 
-            destination = GetFile();
+            fileToSave = GetFile();
             canSave = false;
         }
 
@@ -154,7 +154,7 @@ namespace FileBackupByGigginoCorp
 
         private void TargetDir(object sender, EventArgs e)
         {
-            fileToSave = GetFile();
+            destination = GetFile();
 
             canSave = false;
 
@@ -162,7 +162,13 @@ namespace FileBackupByGigginoCorp
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            thread1.Abort();
             Application.Exit();
+        }
+
+        private void Menu_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+
         }
 
         public string GetFile()
