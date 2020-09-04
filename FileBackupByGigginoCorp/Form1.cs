@@ -10,6 +10,8 @@ namespace FileBackup
     {
         public static string fileToSave;
         public static string destination;
+        public static string dataFolder = @"\";
+
         public static bool canSave, running = false;
         Thread thread1;
         public Form1()
@@ -36,11 +38,12 @@ namespace FileBackup
         {
             if ((destination != null && fileToSave != null))
             {
-                StreamWriter sw = File.CreateText(@".\data.txt");
+                StreamWriter sw = File.CreateText(dataFolder + "data.txt");
 
                 canSave = true;
                 sw.WriteLine(fileToSave);
                 sw.WriteLine(destination);
+                sw.WriteLine(dataFolder);
                 sw.Close();
                 RunThread();
 
@@ -60,7 +63,7 @@ namespace FileBackup
         {
             if (!File.Exists(@".\data.txt"))
             {
-                using (StreamWriter sw = File.AppendText(@".\data.txt"))
+                using (StreamWriter sw = File.AppendText(dataFolder + "data.txt"))
                 {
                     canSave = false;
                     sw.Close();
@@ -68,7 +71,7 @@ namespace FileBackup
             }
             try
             {
-                using (StreamReader sr = new StreamReader(@".\data.txt"))
+                using (StreamReader sr = new StreamReader(dataFolder + "data.txt"))
                 {
                     fileToSave = sr.ReadLine();
                     if (fileToSave == null)
@@ -77,6 +80,12 @@ namespace FileBackup
                         return;
                     }
                     destination = sr.ReadLine();
+                    dataFolder = sr.ReadLine();
+                    if(dataFolder == null)
+                    {
+                        canSave = false;
+                        return;
+                    }
                     canSave = true;
                 }
             }
@@ -169,6 +178,13 @@ namespace FileBackup
         private void Menu_MouseDoubleClick(object sender, MouseEventArgs e)
         {
 
+        }
+
+        private void dataFolderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dataFolder = GetFile() + @"\";
+
+            canSave = false;
         }
 
         public string GetFile()
